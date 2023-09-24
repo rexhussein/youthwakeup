@@ -75,7 +75,7 @@
                                         <nav class="main-menu">
                                             <ul class="menu-area-main">
                                                 <li class="active"> <a href="index.html">Home</a> </li>
-                                                <li><a href="https://s31.radiolize.com/public/youth_wakeup_radio"><img src="images/5.png" alt="#" />STREAM LIVE </a></li>
+                                               <li><a href="https://s31.radiolize.com/public/youth_wakeup_radio"><img src="images/5.png" alt="#" />STREAM LIVE </a></li>
 
 
                                             </ul>
@@ -90,6 +90,7 @@
                 </div>
             </div>
         </div>
+    </header>
         <!-- end header inner -->
 
     <!-- contact -->
@@ -112,14 +113,14 @@
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
 
-                            <form class="main_form">
+                            <form class="main_form" name="sentMessage">
                                 <div class="row">
 
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                         <input class="form-control" placeholder="Name" type="text" name="Name" required>
                                     </div>
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                        <input class="form-control" placeholder="Name of Company" type="text" name="Name"required>
+                                        <input class="form-control" placeholder="Name of Company" type="text" name="CompanyName"required>
                                     </div>
                                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                         <input class="form-control" placeholder="Contact Number" type="text" name="Phone"required>
@@ -132,7 +133,7 @@
                                         <textarea class="textarea" placeholder="Advertisement Summary" type="text" name="Message" required></textarea>
                                     </div>
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                        <button class="send">Send</button>
+                                        <button type="submit" class="send">Send</button>
                                     </div>
                                 </div>
                             </form>
@@ -178,10 +179,9 @@
 
                     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                         <div class="address">
-                            <h3>Subcribe email</h3>
-                            <p>Stay Informed: Submit Your Email to Subscribe To Our Newsletter!</p>
-                            <input class="form-control" placeholder="Your Email" type="type" name="Your Email">
-                            <button class="submit-btn">Submit</button>
+                             <h3>Disclaimer</h3>
+                            <p>Disclaimer: The content broadcasted on our online radio station is intended for entertainment and informational purposes only. The views and opinions expressed by our hosts, guests, and callers do not necessarily reflect the views of our station. </p>
+
                         </div>
                     </div>
 
@@ -267,9 +267,24 @@
             });
         }
     </script>
-    <!-- google map js -->
-   <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap"></script>-->
-    <!-- end google map js -->
+
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbzvBMzh_Rm5QKHgvok5FJnPVrRJs7TbvTFXVa-mXlMDoE3cPrrdri5uEVOwoPphPAGT/exec'
+      const form = document.forms['sentMessage']
+
+      form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+          .then(response => alert("Message has been sent, you'll hear from us soon!"))
+          .then(() => { window.location.reload(); })
+          .catch(error => console.error('Error!', error.message))
+      })
+    </script>
+
+
+
+
+
 </body>
 
 </html>
